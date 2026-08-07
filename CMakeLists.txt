@@ -5,10 +5,14 @@ add_executable(brainrot)
 
 target_compile_options(brainrot PRIVATE
     -g -O0
-    -include ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap.h
+)
+
+target_include_directories(brainrot PRIVATE
+    translators/
 )
 
 target_sources(brainrot PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_test.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
