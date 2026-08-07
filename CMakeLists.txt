@@ -1,16 +1,22 @@
 cmake_minimum_required(VERSION 3.23)
-project(Obfus)
+project(lib_brainrot)
 
-# set_property(TARGET obfus PROPERTY CXX_STANDARD 20)
+add_executable(brainrot)
 
-add_executable(obfus)
+target_compile_options(brainrot PRIVATE
+    -g -O0
+    -include ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap.h
+)
+
+target_sources(brainrot PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+)
 
 # TODO: C++ ?
 function(wrap_symbol arg_target arg_symbol)
 
     target_compile_options(${arg_target} PRIVATE
-        # -fno-builtin-${arg_symbol}
-        -include ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap_${arg_symbol}.h
+        -fno-builtin-${arg_symbol}
     )
 
     target_link_options(${arg_target} PRIVATE
@@ -22,14 +28,6 @@ function(wrap_symbol arg_target arg_symbol)
     )
 endfunction()
 
-wrap_symbol(obfus
+wrap_symbol(brainrot
     printf
-)
-
-target_compile_options(obfus PRIVATE
-    -g -O0
-)
-
-target_sources(obfus PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )

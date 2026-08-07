@@ -1,5 +1,5 @@
-#ifndef _WRAP_PRINTF_H
-#define _WRAP_PRINTF_H
+#ifndef _WRAP_H
+#define _WRAP_H
 
 #ifdef __cplusplus
 extern "C"
@@ -12,4 +12,4 @@ extern "C"
 }
 #endif
 
-#endif /* _WRAP_PRINTF_H */
+#endif /* _WRAP_H */

@@ -2,7 +2,7 @@
 
 int main()
 {
-    printf("Hello World!\n", "World");
+    printf("Hello World!\n");
 
     printf("%u%u !!!\n", 6, 7);
 
