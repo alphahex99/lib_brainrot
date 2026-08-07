@@ -1,9 +1,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-extern int __real_printf(const char *, ...);
+extern "C" int __real_printf(const char *, ...);
 
-int __wrap_printf(const char *format, ...)
+extern "C" int __wrap_printf(const char *format, ...)
 {
     va_list args;
 

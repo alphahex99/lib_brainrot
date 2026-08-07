@@ -12,7 +12,6 @@ target_sources(brainrot PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
-# TODO: C++ ?
 function(wrap_symbol arg_target arg_symbol)
 
     target_compile_options(${arg_target} PRIVATE
@@ -24,7 +23,7 @@ function(wrap_symbol arg_target arg_symbol)
     )
 
     target_sources(${arg_target} PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap_${arg_symbol}.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap_${arg_symbol}.cpp
     )
 endfunction()
 
