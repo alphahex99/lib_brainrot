@@ -4,7 +4,7 @@ int main()
 {
     printf("Hello World!\n");
 
-    printf("%u%u !!!\n", 6, 7);
+    printf("1 2 3 4 5 6 7 9\n");
 
     return 0;
 }

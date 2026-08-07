@@ -12,13 +12,15 @@ target_include_directories(brainrot PRIVATE
 )
 
 target_sources(brainrot PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_test.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_gen_x.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
 function(wrap_symbol arg_target arg_symbol)
 
     target_compile_options(${arg_target} PRIVATE
+        # Disable optimizations that can replace calls to our wrapped functions,
+        # for example: 'printf(str)' without varargs gets replaced by 'puts(str)'
         -fno-builtin-${arg_symbol}
     )
 
