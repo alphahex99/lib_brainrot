@@ -1,5 +1,5 @@
-#ifndef WRAP_STREAMBUF_HPP
-#define WRAP_STREAMBUF_HPP
+#ifndef _WRAP_STREAMBUF_HPP
+#define _WRAP_STREAMBUF_HPP
 
 #include <cstddef>
 #include <ostream>
@@ -23,6 +23,7 @@ class wrap_streambuf : public std::basic_streambuf<CharT, Traits>
 
   protected:
     int sync() override;
+    std::streamsize xsputn(const char_type *s, std::streamsize count) override;
     int_type overflow(int_type ch = traits_type::eof()) override;
 
   private:
@@ -30,10 +31,12 @@ class wrap_streambuf : public std::basic_streambuf<CharT, Traits>
     static constexpr std::size_t buffer_size = 4096;
     char_type buffer[buffer_size];
 
+    static constexpr char_type newline = CharT{'\n'};
+
     ostream_type &real_cout;
     streambuf_type *real_streambuf;
 };
 
 #include "wrap_streambuf.tcc"
 
-#endif // WRAP_STREAMBUF_HPP
+#endif // _WRAP_STREAMBUF_HPP
