@@ -8,31 +8,34 @@ target_compile_options(brainrot PRIVATE
 )
 
 target_include_directories(brainrot PRIVATE
-    translators/
+    ${CMAKE_CURRENT_SOURCE_DIR}/
 )
 
 target_sources(brainrot PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/translators/my_pformat.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_gen_x.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )
 
-function(wrap_symbol arg_target arg_symbol)
+function(wrap_symbols arg_target)
+    foreach(arg_symbol IN LISTS ARGN)
+        target_compile_options(${arg_target} PRIVATE
+            # Disable optimizations that can replace calls to our wrapped functions,
+            # for example: 'printf(str)' without varargs gets replaced by 'puts(str)'
+            -fno-builtin-${arg_symbol}
+        )
 
-    target_compile_options(${arg_target} PRIVATE
-        # Disable optimizations that can replace calls to our wrapped functions,
-        # for example: 'printf(str)' without varargs gets replaced by 'puts(str)'
-        -fno-builtin-${arg_symbol}
-    )
+        target_link_options(${arg_target} PRIVATE
+            -Wl,--wrap=${arg_symbol}
+        )
 
-    target_link_options(${arg_target} PRIVATE
-        -Wl,--wrap=${arg_symbol}
-    )
-
-    target_sources(${arg_target} PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap_${arg_symbol}.cpp
-    )
+        target_sources(${arg_target} PRIVATE
+            ${CMAKE_CURRENT_SOURCE_DIR}/wrappers/wrap_${arg_symbol}.cpp
+        )
+    endforeach()
 endfunction()
 
-wrap_symbol(brainrot
-    printf
+wrap_symbols(brainrot
+    $<$<BOOL:${MINGW}>:__mingw_pformat>
+    # pformat
 )

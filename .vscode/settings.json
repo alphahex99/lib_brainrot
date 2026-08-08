@@ -1,4 +1,7 @@
 {
+    "files.associations": {
+        "*.tcc": "cpp"
+    },
     "files.readonlyInclude": {
         "C:/msys64/ucrt64/include/**": true,
         "build/**": true
