@@ -20,11 +20,11 @@ static void puts_error(const char *__restrict__ _Format)
 
 int __cdecl my_pformat(real_pformat_fn *real_pformat, int flags, void *dest, int max, const char *fmt, va_list argv)
 {
-    std::string str_format{fmt};
+    std::string str{fmt};
 
-    if (translate_gen_x(str_format))
+    if (translate_gen_x(str))
     {
-        return real_pformat(flags, dest, max, str_format.c_str(), argv);
+        return real_pformat(flags, dest, max, str.c_str(), argv);
     }
     else
     {

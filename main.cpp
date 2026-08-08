@@ -13,5 +13,11 @@ int main()
     std::cout << "Hello World!\n";
     std::cout << "1 2 3 4 5 6 7 8 9\n";
 
+#if 0
+    // TODO: Fix flushing. Overriding xsputn was probably better...
+    while (1)
+        ;
+#endif
+
     return 0;
 }
