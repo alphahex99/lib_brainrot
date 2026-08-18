@@ -8,7 +8,7 @@ extern "C" int __cdecl __wrap_pformat(int flags, void *dest, int max, const char
 {
     std::string str{fmt};
 
-    if (translate(str, fmt))
+    if (translate(str))
     {
         return __real_pformat(flags, dest, max, str.c_str(), argv);
     }

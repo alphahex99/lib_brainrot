@@ -1,11 +1,10 @@
 #include "translate.hpp"
 
 #include "translate_gen_x.hpp"
+#include "translate_owo.hpp"
 
-static void puts_error(const char *__restrict__ fmt)
+static void puts_error(std::string &str)
 {
-    std::string str{fmt};
-
     for (std::string::size_type pos = 0; (pos = str.find("\n", pos)) != std::string::npos; pos += 2)
     {
         str.replace(pos, 1, "\\n");
@@ -16,16 +15,18 @@ static void puts_error(const char *__restrict__ fmt)
     fputs(str.c_str(), stderr);
 }
 
-bool translate(std::string &str, const char *original_fmt)
+bool translate(std::string &str)
 {
+    std::string str_original = str;
+
     // TODO: some way to pick between them
-    if (translate_gen_x(str))
+    if (translate_owo(str))
     {
         return true;
     }
     else
     {
-        puts_error(original_fmt);
+        puts_error(str_original);
         return false;
     }
 }

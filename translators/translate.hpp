@@ -3,6 +3,7 @@
 
 #include <string>
 
-bool translate(std::string &str, const char *original_fmt);
+/// @param[inout] str
+bool translate(std::string &str);
 
 #endif

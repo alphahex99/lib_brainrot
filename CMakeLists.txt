@@ -13,6 +13,7 @@ target_include_directories(brainrot PRIVATE
 
 target_sources(brainrot PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_gen_x.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate_owo.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/translators/translate.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
 )

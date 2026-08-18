@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "translators/translate_gen_x.hpp"
+#include "translators/translate.hpp"
 
 template <typename CharT, typename Traits>
 wrap_streambuf<CharT, Traits>::wrap_streambuf(ostream_type &real_cout)
@@ -35,7 +35,7 @@ template <typename CharT, typename Traits> int wrap_streambuf<CharT, Traits>::sy
         std::basic_string<CharT> str(this->pbase(), static_cast<std::size_t>(count));
 
         // TODO: wstring support? + wpformat hook
-        if (translate_gen_x(str))
+        if (translate(str))
         {
             if (real_streambuf->sputn(str.data(), static_cast<std::streamsize>(str.size())) !=
                 static_cast<std::streamsize>(str.size()))
