@@ -13,7 +13,7 @@ int main()
 
     std::cout << "Hello World!\n";
     std::cout << "1 2 3 4 5 6 7 8 9\n";
-    std::cout << "The quick brown fox jumps over the lazy dog\n";
+    std::cout << "The quick brown fox jumps over the lazy dog\n\n";
 
     return 0;
 }
